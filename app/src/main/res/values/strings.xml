@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Bus</string>
+    <string name="after">Через чм</string>
+    <string name="start_in">Отправление в :</string>
+    <string name="example_info">example info</string>
+    <string name="example_title_on_dialog">example title on dialog</string>
+    <string name="example_text_on_dialog">example text onn dialog</string>
+</resources>
