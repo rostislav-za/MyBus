@@ -2,7 +2,7 @@ package rostilav.mybus.domain
 
 import rostilav.mybus.data.DataBase
 import rostilav.mybus.data.getDataForBus
-import rostilav.mybus.presentation.RecyclerView.Item
+import rostilav.mybus.presentation.list.Item
 import rostilav.mybus.presentation.ProgressDialogInfo
 import java.util.*
 

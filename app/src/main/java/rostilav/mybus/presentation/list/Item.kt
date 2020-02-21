@@ -1,4 +1,4 @@
-package rostilav.mybus.presentation.RecyclerView
+package rostilav.mybus.presentation.list
 
 class Item(
     var startTime: String = "00:00",

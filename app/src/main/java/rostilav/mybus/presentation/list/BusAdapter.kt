@@ -1,4 +1,4 @@
-package rostilav.mybus.presentation.RecyclerView.base
+package rostilav.mybus.presentation.list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,6 @@ import com.example.easyreader3.presentation.adapters.base.BaseAdapter
 import com.example.easyreader3.presentation.adapters.base.BaseViewHolder
 import kotlinx.android.synthetic.main.item_flight.view.*
 import rostilav.mybus.R
-import rostilav.mybus.presentation.RecyclerView.Item
 
 class BusAdapter() : BaseAdapter<Item>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)=

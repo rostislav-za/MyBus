@@ -8,7 +8,7 @@ fun Date.isWorkingDays(): Boolean = when (this.toString().split(" ")[0]) {
 }
 
 fun String.toMTime() = MTime(h = this.split(":")[0].toInt(), m = this.split(":")[1].toInt())
-class MTime(h: Int, m: Int) {
+class MTime(h: Int=0, m: Int=0) {
     val h: Int
     val m: Int
 
@@ -35,9 +35,14 @@ class MTime(h: Int, m: Int) {
     fun isBigger(other: MTime): Boolean = this.h * 100 + this.m > other.h * 100 + other.m
 
 
-    fun myToString() = this.h.toString() + ":" + this.m.toString()
+    fun myToString():String =
+        ( if(this.h<10){"0"+this.h}else{""+this.h} + ":" +if(this.m<10){"0"+this.m}else{""+this.m})
 
-
+ fun parse(s:String):MTime {
+     var list=s.split(":")
+     //НЕ БЕЗОПАСНО . Нет проверки входных данных
+     return MTime(s.split(":")[0].toInt(), s.split(":")[1].toInt())
+ }
 }
 
 
@@ -46,9 +51,15 @@ class Flight(
     val toHome: Boolean = false,
     val bigBus: Boolean = false
 
-)
+){
+    fun parse(s:String):Flight{
+        var l=s.split(",")
+      return  Flight(MTime().parse(l[0]),l[1]=="+")
+    }
+}
 
 class RoadPoint(val time: MTime, val place: String)
+
 class TimeTable(
     val isWorkingDays: Boolean = false,
     val isTo: Boolean = false,
