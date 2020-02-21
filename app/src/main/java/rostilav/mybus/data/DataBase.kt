@@ -21,12 +21,12 @@ class DataBase {
        RoadPoint(MTime().parse("00:38"), "Вещевой Рынок")
     )
     private  val progressBack= arrayOf(
-        RoadPoint(MTime().parse("00,17"), "Вещевой Рынок"),
-        RoadPoint(MTime().parse("00,25"), "УАЗ"),
-        RoadPoint(MTime().parse("00,32"), "Пушкаревское Кольцо"),
-        RoadPoint(MTime().parse("00,43"), "12 Сентября"),
-        RoadPoint(MTime().parse("00,55"), "Детский мир"),
-        RoadPoint(MTime().parse("00,59"), "ЦУМ")
+        RoadPoint(MTime().parse("00:17"), "Вещевой Рынок"),
+        RoadPoint(MTime().parse("00:25"), "УАЗ"),
+        RoadPoint(MTime().parse("00:32"), "Пушкаревское Кольцо"),
+        RoadPoint(MTime().parse("00:43"), "12 Сентября"),
+        RoadPoint(MTime().parse("00:55"), "Детский мир"),
+        RoadPoint(MTime().parse("00:59"), "ЦУМ")
     )
 
   internal val testItinerary: Itinerary = Itinerary(
