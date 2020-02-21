@@ -9,14 +9,21 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".presentation.main.screen.MainActivity">
+
+        <activity android:name=".presentation.MainActivity"
+                  android:screenOrientation="portrait"
+        >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
+
     </application>
+
 <!-- Приложение хранит и предоставляет информаци по расписанию рейсов автобусов центробанк-карлинское.
  рейс имеет время отправления  и пометку пункта отправки (от церкви или нет)-->
 </manifest>

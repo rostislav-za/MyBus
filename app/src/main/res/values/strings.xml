@@ -5,4 +5,15 @@
     <string name="example_info">example info</string>
     <string name="example_title_on_dialog">example title on dialog</string>
     <string name="example_text_on_dialog">example text onn dialog</string>
+    <string name="in">в</string>
+    <string name="startTime">09:16</string>
+    <string name="fromPoint">от ост.</string>
+    <string name="StartPoint">Центробанк</string>
+    <string name="Status">(В пути)</string>
+    <string name="finishIn">- прибытие к ост.</string>
+    <string name="finishPoint">Церковь</string>
+    <string name="possibleWithABike">-С площадкой для велосипеда</string>
+    <string name="possibleFromToHome">-Автобусы от/до дома</string>
+    <string name="workingDays">рабочий день</string>
+    <string name="startFromPoint">Отправление от ост.</string>
 </resources>

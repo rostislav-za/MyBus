@@ -1,15 +1,10 @@
-package rostilav.mybus.presentation.main.screen
+package rostilav.mybus.presentation
 
 import rostilav.mybus.domain.MTime
 import rostilav.mybus.domain.Model
+import rostilav.mybus.presentation.RecyclerView.ItemsAdapter
 
-class Item(
-    var startTime: String = "00:00",
-    var timeToStart: String = "00h00m",
-    var isOutdated: Boolean = false,
-    var info: String = "star info",
-    var taged: Boolean = false
-)
+
 class ProgressDialogInfo(
     val title:String="title",
    val tv1:String="",
@@ -28,9 +23,7 @@ private val model:Model=Model()
 
     fun button2Clicked()=model.isWDSwitcher()
 
-
-
-    fun showList()= ItemsAdapter(model.getItems())
+    fun showList()= ItemsAdapter(model.getFlightsList())
     fun notifyClicked(){}
     fun showDialog(time:MTime): ProgressDialogInfo =model.getProgressDialogInfo(time)
     fun showToast(){}

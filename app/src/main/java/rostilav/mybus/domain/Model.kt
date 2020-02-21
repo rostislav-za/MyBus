@@ -2,17 +2,18 @@ package rostilav.mybus.domain
 
 import rostilav.mybus.data.DataBase
 import rostilav.mybus.data.getDataForBus
-import rostilav.mybus.presentation.main.screen.Item
-import rostilav.mybus.presentation.main.screen.ProgressDialogInfo
+import rostilav.mybus.presentation.RecyclerView.Item
+import rostilav.mybus.presentation.ProgressDialogInfo
 import java.util.*
 
 class Model() {
-   internal val WORKINGDAYS:String="БУДНИ"
-   internal val HOLYDAYS:String="ВЫХОДНЫЕ"
-   internal var db: DataBase = DataBase()
-   internal var isTo: Boolean = false
-   internal var isWD: Boolean = Date().isWorkingDays()
-   internal val itineraryFromDB: Itinerary = db.getDataForBus()
+    internal val WORKINGDAYS: String = "БУДНИ"
+    internal val HOLYDAYS: String = "ВЫХОДНЫЕ"
+    internal var db: DataBase = DataBase()
+    internal var isTo: Boolean = false
+    internal var isWD: Boolean = Date().isWorkingDays()
+    internal val itineraryFromDB: Itinerary = db.getDataForBus()
+
     fun index(): Int = when (listOf(isWD, isTo)) {
         listOf(true, true) -> 0
         listOf(true, false) -> 1
@@ -22,15 +23,23 @@ class Model() {
     }
 
     fun timeNow(): MTime = Date().toMTime()
-
-    fun getItems(): List<Item> {
+    fun getFlightsList(): List<Item> {
         val input = Flights()
+
         return List<Item>(input.size) { i ->
             Item(
                 startTime = input[i].time.myToString(),
-                timeToStart = (input[i].time - timeNow()).myToString(),
-                taged = input[i].star,
-                isOutdated = timeNow().isBigger(input[i].time),
+                startPoint = if (!isTo) { "Обелиск" } else { "Центробанк" },
+                status = if(!timeNow().isBigger(input[i].time)){"(На маршруте)"}else{"(Ушел)"},
+                finishPoint = if (isTo) { "Обелиск" } else { "Центробанк" },
+                finishTime = (input[i].time + MTime(1, 0)).myToString(),
+                visibleBikeIcon = input[i].bigBus,
+                visibleHomeIcon = !input[i].toHome,//ВНИМАНИЕ КОСТЫЛЬ!
+                // ГДЕ-ТО ИНВЕРСИРУЕТСЯ ЗНАЧЕНИЕ  ЗВЕЗДОЧЕК ИЗ БД. ЗДЕСЬ ОНО ИНВЕРСИРОВАНО ОБРАТНО. НАЙТИ, ИСПРАВИТЬ
+
+
+                //timeToStart = (input[i].time - timeNow()).myToString(),
+                isActive = timeNow().isBigger(input[i].time),
                 info = StarDescription()
             )
         }
@@ -56,24 +65,27 @@ class Model() {
             else s1 += newln + a[i].time.myToString() + " -" + a[i].place
         }
         return ProgressDialogInfo(
-            title = (if (isTo == true) {
-                itineraryFromDB.startPoint
-            } else {
-                itineraryFromDB.finishPoint
-            }) + " " + time.myToString(),
+            title = "Отправление " + time.myToString(),
             tv1 = s1,
             tv2 = s2
         )
     }
 
-    fun isToSwitcher(){isTo=!isTo}
+    fun isToSwitcher() {
+        isTo = !isTo
+    }
 
-    fun isWDSwitcher(){isWD=!isWD}
-    fun getBtnText(btnType:Int):String= when (listOf(btnType,index())) {
-            listOf(1,2),listOf(1,0) ->  itineraryFromDB.startPoint
-            listOf(1,1),listOf(1,3) -> itineraryFromDB.finishPoint
-            listOf(2,0),listOf(2,1) -> WORKINGDAYS
-            listOf(2,2),listOf(2,3) -> HOLYDAYS
+    fun isWDSwitcher() {
+        isWD = !isWD
+    }
+
+    fun getBtnText(btnType: Int): String {
+        return when (listOf(btnType, index())) {
+            listOf(1, 2), listOf(1, 0) -> itineraryFromDB.startPoint
+            listOf(1, 1), listOf(1, 3) -> itineraryFromDB.finishPoint
+            listOf(2, 0), listOf(2, 1) -> WORKINGDAYS
+            listOf(2, 2), listOf(2, 3) -> HOLYDAYS
             else -> "Error"
+        }
     }
 }
