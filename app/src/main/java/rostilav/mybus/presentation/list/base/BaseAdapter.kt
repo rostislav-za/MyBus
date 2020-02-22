@@ -1,10 +1,10 @@
 package com.example.easyreader3.presentation.adapters.base
 
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-abstract class BaseAdapter<P> : RecyclerView.Adapter<BaseViewHolder<P>>() {
+abstract class BaseAdapter<P> : androidx.recyclerview.widget.RecyclerView.Adapter<BaseViewHolder<P>>() {
     protected var items: MutableList<P> = ArrayList()
     private var callback: BaseAdapterCallback<P>? = null
 

@@ -1,9 +1,9 @@
 package rostilav.mybus.presentation
 
 import android.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun init(){
-        recyclerViewID.layoutManager = LinearLayoutManager(this)
+        recyclerViewID.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(this)
         recyclerViewID.adapter = busAdapter
         busAdapter.setList(presenter.showList())
         am_bb_from_to_btn.setOnClickListener { presenter.button1Clicked();Update() }
