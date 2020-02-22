@@ -20,6 +20,7 @@ import rostilav.mybus.presentation.list.BusAdapter
 class MainActivity : AppCompatActivity() {
     val newdata = ArrayList<Item>()
     val busAdapter = BusAdapter()
+    val layoutManager= LinearLayoutManager(this)
     val presenter: Presenter =
         Presenter()
 
@@ -31,14 +32,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun init(){
-        recyclerViewID.layoutManager =
-            androidx.recyclerview.widget.LinearLayoutManager(this)
+        recyclerViewID.layoutManager =layoutManager
         recyclerViewID.adapter = busAdapter
-        busAdapter.setList(presenter.showList())
-        am_bb_from_to_btn.setOnClickListener { presenter.button1Clicked();Update() }
-        am_bb_work_holydays_btn.setOnClickListener { presenter.button2Clicked();Update() }
-        am_bb_from_to_btn.text = presenter.showButton(1)
-        am_bb_work_holydays_btn.text = presenter.showButton(2)
+        update()
+        am_bb_from_to_btn.setOnClickListener { presenter.button1Clicked();update() }
+        am_bb_work_holydays_btn.setOnClickListener { presenter.button2Clicked();update() }
         busAdapter.attachCallback(object : BaseAdapterCallback<Item> {
             override fun onItemClick(model: Item, view: View) {
                 itemClicked(model, view)
@@ -73,10 +71,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun Update() {
+    fun update() {
         am_bb_from_to_btn.text = presenter.showButton(1)
         am_bb_work_holydays_btn.text = presenter.showButton(2)
         busAdapter.setList(presenter.showList())
+        layoutManager.scrollToPositionWithOffset(presenter.getPosition(), 30);
 
     }
 

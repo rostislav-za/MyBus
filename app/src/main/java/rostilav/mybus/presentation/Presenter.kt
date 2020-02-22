@@ -28,4 +28,15 @@ private val model:Model=Model()
     fun showToast(){}
 
  fun showButton(btnType:Int):String{return model.getBtnText(btnType)}
+
+
+    fun getPosition():Int{
+        var r=0
+        var l =model.getFlightsList()
+        for(i in 0..l.lastIndex){
+            if(l[i].isActive)r=i
+        }
+
+        return r
+    }
 }
